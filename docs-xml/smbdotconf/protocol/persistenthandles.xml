@@ -1,0 +1,20 @@
+<samba:parameter name="persistent handles"
+                 context="G"
+                 type="boolean"
+                 xmlns:samba="http://www.samba.org/samba/DTD/samba-doc">
+<description>
+    <para>
+    This is a global parameter that determines whether or not Persistent 
+    Handle support is enabled.  When set to <constant>yes</constant> (and if 
+    SMB3 or above has been negotiated) the server will negotiate Persistent 
+    Handle support for the session, even if no underlying file system 
+    actually supports Continuous Availability. When set to
+    <constant>no</constant>, the server will not negotiate Persistent Handle
+    support, and Continuous Availability will be disabled on all shares.
+    </para>
+</description>
+
+<related>continuous availability</related>
+
+<value type="default">no</value>
+</samba:parameter>

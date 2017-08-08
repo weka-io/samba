@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 
 bld.SAMBA3_SUBSYSTEM('NFS4_ACLS',
@@ -502,3 +503,19 @@ bld.SAMBA3_MODULE('vfs_fake_dfq',
                  init_function='',
                  internal_module=bld.SAMBA3_IS_STATIC_MODULE('vfs_fake_dfq'),
                  enabled=bld.SAMBA3_IS_ENABLED_MODULE('vfs_fake_dfq'))
+
+bld.SAMBA3_MODULE(
+                 'vfs_weka_xattr_db',
+                 subsystem='vfs',
+                 source='vfs_weka_xattr_db.c',
+                 init_function='',
+                 internal_module=bld.SAMBA3_IS_STATIC_MODULE('vfs_weka_xattr_db'),
+                 enabled=bld.SAMBA3_IS_ENABLED_MODULE('vfs_weka_xattr_db'))
+
+bld.SAMBA3_MODULE(
+                 'vfs_wekafs',
+                 subsystem='vfs',
+                 source='vfs_wekafs.c',
+                 init_function='',
+                 internal_module=bld.SAMBA3_IS_STATIC_MODULE('vfs_wekafs'),
+                 enabled=bld.SAMBA3_IS_ENABLED_MODULE('vfs_wekafs'))

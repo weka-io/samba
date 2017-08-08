@@ -1,0 +1,63 @@
+<samba:parameter name="continuous availability"
+                 context="S"
+                 type="enum"
+                 enumlist="enum_bool_auto"
+                 xmlns:samba="http://www.samba.org/samba/DTD/samba-doc">
+<description>
+    <para>
+    Continous Availability (CA) is a feature of the underlying file system.
+    Generally speaking, CA may be available on clustered or distributed file
+    systems that allow a connection to fail over to another node in the
+    event of a server crash or reboot.
+    </para>
+    <para>
+    Continuous availability is only enabled if Persistent Handle support has
+    been negotiated on the connection.
+    </para>
+    <para>
+    This parameter has three possible values:
+    <itemizedlist>
+        <listitem>
+            <para><constant>Yes</constant>:
+            This setting is for testing purposes.  If SMB3 or above has 
+            been negotiated on the connection, and if Persistent Handle 
+            support has also been negotiated on the connection, then the 
+            server will indicate CA support on the share in the Tree Connect 
+            response whether or not the underling file system actaully
+            supports CA.
+            </para>
+        </listitem>
+        <listitem>
+            <para><constant>Auto</constant>:
+            This setting automatically determines whether or not the share
+            supports Continuous Availability.  The following conditions
+            must be met:
+            <itemizedlist>
+                <listitem><para>The negotiated protocol on the connection must
+                be SMB3 or above.</para></listitem>
+                <listitem><para>Persistent Handle support must have been
+                negotiated on the connection.</para></listitem>
+                <listitem><para>A Samba VFS module that provides Continuous
+                Availability support must have been loaded on the
+                share.</para></listitem>
+            </itemizedlist>
+            If these conditions are met, then the server will indicate CA
+            support for the share in the Tree Connect response.  The VFS
+            module is then responsible for providing that support.
+            </para>
+        </listitem>
+        <listitem>
+            <para><constant>No</constant>:
+            Explicitly disables CA support on the share.  The server will 
+            not indicate CA support to the client and will not provide 
+            Persistent Handles for files that are opened within the share.
+            </para>
+        </listitem>
+    </itemizedlist>
+    </para>
+</description>
+
+<related>persistent handles</related>
+
+<value type="default">auto</value>
+</samba:parameter>
